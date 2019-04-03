@@ -32,6 +32,5 @@ def sub_plot_format(ax, titles, i):
     ax.tick_params(direction="inout", which="both", labelsize=7, length=7)
     ax.spines['bottom'].set_visible(False)
     ax.spines['right'].set_visible(False)
-    ax.set_xlabel(titles[i], horizontalalignment="center", multialignment="center")
+    ax.set_xlabel(titles[i], horizontalalignment="center", multialignment="center", fontsize=8)
     ax.xaxis.set_label_position('top')
-
