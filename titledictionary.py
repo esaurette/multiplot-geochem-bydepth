@@ -7,7 +7,7 @@ March 12, 2019
 
 titledict = {}
 
-headers =  [
+aqgeochem =  [
         'SAMPLE DEPTH (mbgs)', 
         'Month-Year', 
         'pH', 
@@ -58,7 +58,8 @@ headers =  [
         'PO4-P', 
         'NH4-N', 
         'Fe(2+)',
-        'S(2-)', 
+        'S(2-)']
+phreeqc = [ 
         'pct_err', 
         'si_Calcite', 
         'si_Siderite', 
@@ -66,10 +67,17 @@ headers =  [
         'si_Alunite', 
         'si_Gypsum', 
         'si_Anglesite', 
-        'si_Jarosite',
+        'si_Jarosite-K',
         'si_Melanterite', 
-        'si_Epsomite']
+        'si_Epsomite',
+        'si_Jarositess',
+        'si_JarositeH',
+        'si_Jarosite-Na',
+        'si_Fe(OH)3(a)',
+        'si_Goethite',
+        'si_Fe(OH)2']
 
+headers = aqgeochem + phreeqc
 # headers not included as titles: 'CORE', 'TOP (mbgs)', 'BOTTOM (mbgs)', 'LOA (cm)', 'Eo', 'Alkalinity Digits Titrated (to pink endpoint)',
 # 'Alkalinity Sample Volume (mL)', 
 
@@ -126,16 +134,21 @@ titles = [
         'Fe${2+}$',
         'S${2-}$',
         'Percent Error',
-        'Calcite (Si)\n$\\regular^{CaCO_3}$',
-        'Siderite (Si)\n$\\regular^{FeCO_3}$',
-        'Gibbsite (Si)\n$\\regular^{Al(OH)_3}$',
-        'Alunite (Si)\n$\\regular^{KAl_3(SO_4)_2(OH)_6}$',
-        'Gypsum (Si)\n$\\regular^{CaSO_4\u20227H_2O}$',
-        'Anglesite (Si)\n$\\regular^{PbSO_4}$',
-        'Jarosite (Si)\n$\\regular^{KFe_3(SO_4)_2(OH)_6}$',
-        'Melanterite (Si)\n$\\regular^{FeSO_4\u20227H_2O}$',
-        'Epsomite (Si)\n$\\regular^{MgSO_4\u20227H_2O}$'
-        ]
+        'Calcite (SI)\n$\\regular^{CaCO_3}$',
+        'Siderite (SI)\n$\\regular^{FeCO_3}$',
+        'Gibbsite (SI)\n$\\regular^{Al(OH)_3}$',
+        'Alunite (SI)\n$\\regular^{KAl_3(SO_4)_2(OH)_6}$',
+        'Gypsum (SI)\n$\\regular^{CaSO_4\u20227H_2O}$',
+        'Anglesite (SI)\n$\\regular^{PbSO_4}$',
+        'Jarosite (SI)\n$\\regular^{KFe_3(SO_4)_2(OH)_6}$',
+        'Melanterite (SI)\n$\\regular^{FeSO_4\u20227H_2O}$',
+        'Epsomite (SI)\n$\\regular^{MgSO_4\u20227H_2O}$',
+        'Jarosite(ss) (SI)\n$\\regular^{(K_{0.77}Na_{0.03}H_{0.2})Fe_3(SO_4)_2(OH)_6}$',
+        'H-Jarosite (SI)\n$\\regular^{(H_3O)Fe_3(SO_4)_2(OH)_6}$',
+        'Na-Jarosite (SI)\n$\\regular^{NaFe_3(SO_4)_2(OH)_6}$',
+        'Ferric oxyhydroxide (SI)\n$\\regular^{Fe(OH)_{3(a)}}$',
+        'Goethite (SI)\n$\\regular^{FeO(OH)}$',
+        'Ferrous hydroxide (SI)\n$\\regular^{Fe(OH)_2}$']
 
 i=0
 for i in range(len(headers)):
