@@ -31,9 +31,10 @@ graphs = ['pH', 'Eh', 'Cl', 'Zn', 'S(6)', 'Fe', 'Sb', 'Se', 'Mo', 'Pb', 'Sr', 'C
        'Mn', 'Fe', 'Co', 'Ni', 'Cu', 'Zn', 'As', 'Se', 'Sr', 'Mo', 'Ag', 'Cd',
        'Sn', 'Sb', 'Cs', 'Ba', 'Tl', 'Pb', 'U', 'F', 'Cl', 'N(3)', 'Br',
        'N(5)', 'S(6)', 'S(2)', 'Formate', 'DOC', 'PO4-P', 'NH4-N', 'Fe(2+)',
-       'S(2-)', 'pct_err', 'si_Calcite', 'si_Siderite', 'si_Gibbsite',
-       '  si_Alunite', 'si_Gypsum', 'si_Anglesite', 'si_Jarosite',
-       'si_Melanterite', 'si_Epsomite' '''
+       'S(2-)', 'pct_err', 'si_Calcite', 'si_Siderite', 'si_Gibbsite', 'si_Alunite', 
+       'si_Gypsum', 'si_Anglesite', 'si_Jarosite-K', 'si_Melanterite','si_Epsomite',
+       'si_Jarositess', 'si_JarositeH', 'si_Jarosite-Na', 'si_Fe(OH)3(a)','si_Goethite',
+       'si_Fe(OH)2' '''
        
 y = 'SAMPLE DEPTH (mbgs)' # the column you would like to use for the y-axis values
 
