@@ -9,12 +9,19 @@ March 5, 2019
 # importing modules
 import numpy as np
 import pandas as pd
+import matplotlib
 import matplotlib.pyplot as plt
 import math as m
 from roundto import nice_numbers
 from titledictionary import titledict
+from titledictionary import phreeqc
+from titledictionary import aqgeochem
 import userinput as ui
 import style as s
+
+#changing the size of the sub and superscripts relative to the font size
+matplotlib.mathtext.SHRINK_FACTOR = 0.75
+matplotlib.mathtext.GROW_FACTOR = 1.0/0.75
 
 # read the csv file and convert it to a pandas data structure with headers and column indexes
 data = pd.read_csv(ui.file, header=0, index_col=0) 
@@ -65,7 +72,7 @@ for ax in axes.flatten():
     else:
         new_col = ui.graphs[i]
         data[new_col]=data[ui.graphs[i]]/1
-        while ui.graphs[i] != 'pH' and ui.graphs[i] != 'Eh' and ui.graphs[i] != 'Alkalinity (mg/L as CaCO3)':
+        while ui.graphs[i] != 'pH' and ui.graphs[i] != 'Eh' and ui.graphs[i] != 'Alkalinity (mg/L as CaCO3)' and (ui.graphs[i] in phreeqc) == False:
             titles[i] += '\n$\\regular^{(\mu g\ L^{-1})}$'
             break   
     
@@ -77,8 +84,31 @@ for ax in axes.flatten():
         
     t=0    #resetting the t loop counter
     
-    ax.axis([0, nice_numbers(x_max, ui.xticks), 0, y_max])
-    ax.set_xticks(np.around(np.linspace(0, nice_numbers(x_max, ui.xticks), ui.xticks), decimals=1))
+    if (ui.graphs[i] in aqgeochem) == True and ui.graphs[i] != 'pH':
+        ax.axis([0, nice_numbers(x_max, ui.xticks), 0, y_max])
+        ax.set_xticks(np.around(np.linspace(0, nice_numbers(x_max, ui.xticks), ui.xticks), decimals=1))
+        
+    elif (ui.graphs[i] in phreeqc) == True:
+        if data[ui.graphs[i]].min() > 0:
+            phreeqc_min = -1
+
+        else:
+            phreeqc_min = m.floor(data[ui.graphs[i]].min())
+            
+        if data[ui.graphs[i]].max() < 0:
+            phreeqc_max = 1
+
+        else:
+            phreeqc_max = m.ceil(data[ui.graphs[i]].max())
+
+        ax.axis([phreeqc_min, phreeqc_max, 0, y_max])
+        ax.set_xticks(np.around(np.linspace(phreeqc_min, phreeqc_max, ui.xticks), decimals=1))
+        ax.vlines(0, 0, 5, **s.groundwaterstyle)
+        
+    else:
+        ax.axis([nice_numbers(x_min, ui.xticks), nice_numbers(x_max, ui.xticks), 0, y_max])
+        ax.set_xticks(np.around(np.linspace(nice_numbers(x_min, ui.xticks), nice_numbers(x_max, ui.xticks), ui.xticks), decimals=1))
+    
     ax.set_yticks(np.linspace(0, y_max, ui.yticks))
     
     # if the user input for ground water table is a number, add a dashed line and open down triangle to represent it in each plot
