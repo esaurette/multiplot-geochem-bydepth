@@ -116,7 +116,8 @@ for ax in axes.flatten():
         ax.hlines(ui.ground_water_table, 0, 9999, **s.groundwaterstyle)
         ax.annotate(r'$\triangledown$', (nice_numbers(x_max, ui.xticks)*0.8, ui.ground_water_table))
     
-    if i == 0 or i == ui.col: #the first graph of each row should have a y-axis label
+    first_plot_in_row = [ui.col*n for n in range(ui.row)]
+    if i in first_plot_in_row: #the first graph of each row should have a y-axis label
         ax.set_ylabel(titledict[ui.y])
         
     s.sub_plot_format(ax, titles, i)
